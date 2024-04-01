@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eVault for Legal Records</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icons8-justice-50.png" />
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: sans-serif;
+        background: linear-gradient(to bottom, #3a506b 0%, #0d1927 100%);
+        background-color: #3a506b;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        animation: zoomAnimation 20s infinite alternate ease-in-out;
+    }
+
+    .firstSection {
+        justify-content: center;
+        display: flex;
+        padding: 0px;
+        margin-top: 200px;
+        margin-left: 400px;
+        width: 750px;
+        height: 350px;
+    }
+
+    .section {
+        background-color: #1c2541;
+        background: linear-gradient(to bottom, #1c2541 0%, #29314a 100%);
+        padding: 10px;
+        width: 400px;
+        height: 320px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(23, 23, 23, 0.2);
+        text-align: center;
+        color: rgb(244, 239, 235);
+    }
+
+    .section p {
+        margin-top: 20px;
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .section button {
+        text-decoration: none;
+        background-color: #80879c;
+        color: black;
+        padding: 10px 20px;
+        border-radius: 0px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    .section button:hover {
+        background-color: #424b66;
+    }
+
+    input {
+        width: 60%;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        border-color: #5a4b35;
+    }
+
+    form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .register-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: white;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <section class="firstSection">
+        <form id="registrationForm" method="post">
+            <div class="input-field">
+                <div class="section">
+                    <p>Registration</p>
+                    <i class="input_email"></i>
+                    <input type="email" placeholder="E-mail" id="email" name="email" required>
+
+                    <i class="input_pass"></i>
+                    <input type="password" placeholder="Password" id="password" name="password" required>
+
+                    <i class="input_caseno"></i>
+                    <input type="text" placeholder="Case no." id="caseNo" name="caseNo" required>
+                    <br>
+                    <i class="select_role"></i>
+                    <label for="role">Select Role: </label>
+                    <select id="role" name="role" required>
+                        <option value="lawyer">Lawyer</option>
+                        <option value="judge">Judge</option>
+                        <option value="client">Client</option>
+                        <option value="stakeholder">Stakeholder</option>
+                    </select>
+                    <br>
+                    <button type="submit" id="registerbtn">Register</button>
+                </div>
+            </div>
+        </form>
+    </section>
+    <script type="module" src="registration.js"></script>
+</body>
+
+</html>

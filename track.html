@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="icons8-justice-50.png" />
+    <title>eVault for Legal Records</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+            background: linear-gradient(to bottom, #3a506b 0%, #0d1927 100%);
+            background-color: #3a506b;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            animation: zoomAnimation 20s infinite alternate ease-in-out;
+        }
+
+        .firstSection {
+            justify-content: center;
+            display: flex;
+            padding: 10px;
+            margin-top: 100px;
+            margin-left: 250px;
+            width: 730px;
+            height: 300px;
+        }
+
+        .section {
+            background-color: #1c2541;
+            background: linear-gradient(to bottom, #1c2541 0%, #29314a 100%);
+            padding: 10px;
+            width: 400px;
+            height: 320px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(23, 23, 23, 0.2);
+            text-align: center;
+            color: rgb(244, 239, 235);
+        }
+
+        .section p {
+            margin-top: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .section button {
+            text-decoration: none;
+            background-color: #80879c;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 0px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .section button:hover {
+            background-color: #424b66;
+        }
+
+        input {
+            width: 60%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border-color: #5a4b35;
+        }
+
+        form {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .register-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: white;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+
+        <section class="firstSection">
+            <div class="leftSection">
+                <div class="section">
+                    <h2>Track Case</h2>
+                    <p></p>
+                    <button id="trackBtn">Here</button>
+                    <div id="recordList"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <script>
+        const storageRef = storage.ref('user-uploads/myFile.jpg');
+
+        storageRef.getDownloadURL().then((url) => {
+            // Display the file on your web page
+            const img = document.createElement('img');
+            img.src = url;
+            document.body.appendChild(img);
+        }).catch((error) => {
+            console.error('File retrieval failed: ', error);
+        });
+
+
+
+    </script>
+</body>
+
+</html>

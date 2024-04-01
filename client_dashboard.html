@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="icons8-justice-50.png" />
+    <title>eVault for Legal Records</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        body {
+            font-family: sans-serif;
+            background: linear-gradient(to bottom, #3a506b 0%, #0d1927 100%);
+            background-color: #3a506b;
+            background-attachment: fixed;
+            animation: zoomAnimation 15s infinite alternate ease-in-out;
+        }
+
+        .firstSection {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .secondSection,
+        .thirdSection,
+        .fourthSection {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .leftSection {
+            width: 50%;
+        }
+
+        .rightSection {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .section {
+            background-color: #1c2541;
+            background: linear-gradient(to bottom, #1c2541 0%, #29314a 100%);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: rgb(243, 243, 243);
+        }
+
+        .section h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .section button {
+            text-decoration: none;
+            background-color: #80879c;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .secondSection {
+            margin-top: 20px;
+        }
+
+        .section button:hover {
+            background-color: #424b66;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            margin-top: 15px;
+            margin-bottom: 30px;
+            margin-left: 300px;
+        }
+
+        button {
+            background-color: #ffdb58;
+            margin-bottom: 10px;
+        }
+
+        .thirdSection p {
+            padding: 20px;
+        }
+
+        .fourthSection p {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+
+        <section class="secondSection">
+            <div class="leftSection">
+                <div class="section">
+                    <h2>Share Evidence</h2>
+                    <p>Share your legal records easily and quickly.</p>
+                    <input type="file" id="fileInput" accept=".pdf" />
+                    <button id="uploadButton">Upload</button>
+                    <button id="listButton">List Records</button>
+                    <div id="recordList"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="thirdSection">
+            <div class="leftSection">
+                <div class="section">
+                    <h2>Track the case</h2>
+                    <p>Track the access and changes to your legal records.</p>
+                    <button id="trackBtn">Track
+                        <a href="#track"></a>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="fourthSection">
+            <div class="leftSection">
+                <div class="section">
+                    <h2>Case Details</h2>
+                    <p>Get information about our eVault for Legal Records service.</p>
+                    <button id="caseBtn">Know more</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <script>
+        const caseBtn = document.getElementById("caseBtn");
+        caseBtn.addEventListener("click", function () {
+            window.location.href = "caseDetails.html";
+        });
+        const trackBtn = document.getElementById("trackBtn");
+        trackBtn.addEventListener("click", function () {
+            window.location.href = "track.html";
+        });
+
+        const firebaseConfig = {
+            projectId: "legal- vault - ebff3",
+            messagingSenderId: "42647400830",
+            appId: "1:42647400830:web:b1b47a4d6a4ae7c0c0432f"
+        };
+
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage(app);
+
+        const fileInput = document.getElementById('fileInput');
+        const uploadButton = document.getElementById('uploadButton');
+
+        uploadButton.addEventListener('click', () => {
+            const file = fileInput.files[0];
+            const storageRef = storage.ref(`user-uploads/${file.name}`);
+
+            storageRef.put(file).then((snapshot) => {
+                console.log('File uploaded successfully!');
+            }).catch((error) => {
+                console.error('File upload failed: ', error);
+            });
+        });
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+body {
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+button {
+    margin-bottom: 10px;
+}
+
+#recordList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#recordList li {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#recordList li:hover {
+    background-color: #eee;
+}

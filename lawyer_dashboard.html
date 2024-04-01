@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="icons8-justice-50.png" />
+    <title>eVault for Legal Records</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #3a506b 0%, #0d1927 100%);
+            background-color: #3a506b;
+            background-attachment: fixed;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto;
+            grid-template-areas:
+                "header header"
+                "sidebar main";
+            gap: 20px;
+            animation: zoomAnimation 15s infinite alternate ease-in-out;
+        }
+
+        header {
+            grid-area: header;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+            background-color: #1c2541;
+            background: linear-gradient(to bottom, #101628 0%, #29314a 100%);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            color: white;
+            margin-top: 10px;
+            height: 250px;
+        }
+
+        .main {
+            grid-area: main;
+            background-color: #1c2541;
+            background: linear-gradient(to bottom, #101628 0%, #29314a 100%);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            color: white;
+            margin-top: 10px;
+            height: 250px;
+        }
+
+        .sidebar2 {
+            grid-area: sidebar;
+            background-color: #1c2541;
+            background: linear-gradient(to bottom, #101628 0%, #29314a 100%);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            color: white;
+            margin-top: 300px;
+            height: 250px;
+        }
+
+        .main2 {
+            grid-area: main;
+            background-color: #1c2541;
+            background: linear-gradient(to bottom, #101628 0%, #29314a 100%);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            color: white;
+            margin-top: 300px;
+            height: 250px;
+        }
+
+
+        .section {
+            text-align: center;
+            padding: 80px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        button {
+            background-color: #80879c;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #424b66;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            background-color: #80879c;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar">
+        <div class="section">
+            <h2>Share Evidence</h2>
+            <p>Share your legal records easily and quickly.</p>
+            <input type="file" id="fileInput" accept=".pdf" />
+            <label for="fileInput">Upload</label>
+            <input type="file" id="fileInput" accept=".pdf" />
+            <button id="listButton">List Records</button>
+        </div>
+    </div>
+
+    <div class="sidebar2">
+        <div class="section">
+            <h2>Track the Case</h2>
+            <p>Track the access and changes to your legal records.</p>
+            <button id="trackBtn">Track</button>
+            </section>
+        </div>
+    </div>
+
+    <main class="main">
+        <div class="section">
+            <h2>Retrieve Evidence</h2>
+            <p>Retrieve the uploaded evidence easily and quickly.</p>
+            <button id="retrieveBtn">Retrieve</button>
+        </div>
+    </main>
+
+    <main class="main2">
+        <div class="section">
+            <h2>Case Details</h2>
+            <p>Get information about our eVault for Legal Records service.</p>
+            <button id="caseBtn">Know more</button>
+        </div>
+    </main>
+
+    <script>
+        const retrieveBtn = document.getElementById("retrieveBtn");
+        retrieveBtn.addEventListener("click", function () {
+            window.location.href = "retrieve.html";
+        });
+
+        const caseBtn = document.getElementById("caseBtn");
+        caseBtn.addEventListener("click", function () {
+            window.location.href = "caseDetails.html";
+        });
+
+        const trackBtn = document.getElementById("trackBtn");
+        trackBtn.addEventListener("click", function () {
+            window.location.href = "track.html";
+        });
+
+        const firebaseConfig = {
+            projectId: "legal- vault - ebff3",
+            messagingSenderId: "42647400830",
+            appId: "1:42647400830:web:b1b47a4d6a4ae7c0c0432f"
+        };
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage(app);
+        const fileInput = document.getElementById('fileInput');
+        const uploadButton = document.getElementById('uploadButton');
+
+        uploadButton.addEventListener('click', () => {
+            const file = fileInput.files[0];
+            const storageRef = storage.ref(`user-uploads/${file.name}`);
+
+            storageRef.put(file).then((snapshot) => {
+                console.log('File uploaded successfully!');
+            }).catch((error) => {
+                console.error('File upload failed: ', error);
+            });
+        });
+
+    </script>
+</body>
+
+</html>
